@@ -5,12 +5,12 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 export default function AddTask({ taskList, setTaskList }) {
-  const [title, setTitle] = useState("");
-  const [desc, setDesc] = useState("");
+  const [title, setTitle] = useState("Task Title");
+  const [desc, setDesc] = useState("Description...");
   const [date, setDate] = useState("");
   const [posting, setPosting] = useState(false);
 
@@ -48,7 +48,17 @@ export default function AddTask({ taskList, setTaskList }) {
             className="title-input"
             type="text"
             name="title"
-            defaultValue={"Task Title"}
+            value={title}
+            onClick={(e) => {
+              if (e.target.value === "Task Title") {
+                e.target.value = "";
+              }
+            }}
+            onBlur={(e) => {
+              if (e.target.value === "") {
+                e.target.value = "Task Title";
+              }
+            }}
             onChange={(e) => {
               setTitle(e.target.value);
             }}
@@ -61,7 +71,17 @@ export default function AddTask({ taskList, setTaskList }) {
             className="desc-input"
             type="text"
             name="description"
-            defaultValue={"Description..."}
+            value={desc}
+            onClick={(e) => {
+              if (e.target.value === "Description...") {
+                e.target.value = "";
+              }
+            }}
+            onBlur={(e) => {
+              if (e.target.value === "") {
+                e.target.value = "Description...";
+              }
+            }}
             onChange={(e) => {
               setDesc(e.target.value);
             }}
